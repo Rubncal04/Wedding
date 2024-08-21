@@ -6,6 +6,10 @@ const routes = (app) => {
     res.status(200).send('Welcome to my Wedding');
   })
 
+  app.get('/wake', (req, res) => {
+    res.status(200).send("Hey, I'm here 🎉🎊");
+  })
+
   userRoutes(app);
   presentRoutes(app);
 }
