@@ -15,6 +15,7 @@ class UsersController {
 
       res.json(users)
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: "Something went wrong" });
     }
   }
@@ -40,6 +41,7 @@ class UsersController {
 
       res.status(200).json(user);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: error.message });
     }
   }
