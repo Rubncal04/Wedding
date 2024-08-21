@@ -9,8 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      presentId: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:'Presents',
+          key:'id',
+        },
+        onDelete: 'set NULL',
+      },
       code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       name: {
         type: Sequelize.STRING
@@ -19,7 +28,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       isConfirmed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

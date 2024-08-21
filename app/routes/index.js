@@ -1,4 +1,5 @@
 const userRoutes = require('./user.js');
+const presentRoutes = require('./present.js');
 
 const routes = (app) => {
   app.get('/', (req, res) => {
@@ -6,8 +7,7 @@ const routes = (app) => {
   })
 
   userRoutes(app);
-  // materialRoutes(app);
-  // collectionRoutes(app)
+  presentRoutes(app);
 }
 
 module.exports = routes
