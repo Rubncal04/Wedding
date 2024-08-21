@@ -3,9 +3,10 @@ const createError = require('http-errors');
 
 const WHITELIST = {
   'http://localhost:3307': true,
-  'https://www.bkdssl.horussmartenergyapp.com': true, //PRODUCTION
-  'https://www.bkddev.horussmartenergyapp.com': true, //DEVELOPMENT
-  'https://www.hsestaging.horussmartenergyapp.com': true,
+  'http://localhost:5173': true, //PRODUCTION
+  'http://localhost:5174': true, //DEVELOPMENT
+  'http://localhost:5172': true,
+  'https://wedding-page-nine.vercel.app': true,
 };
 
 const CORS_OPTION = {
