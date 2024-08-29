@@ -31,11 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         attributes: ['id', 'presentId', 'name']
       });
 
-      if (existingUser?.presentId === user.presentId) {
-        return
-      }
-
-      if (existingUser) {
+      if (existingUser && user.presentId !== null) {
         throw new Error('Este regalo ya fue escogido por otro.');
       }
     }

@@ -24,6 +24,7 @@ class UsersController {
     try {
       const { userId, presentId, confirm, code } = req.body;
       const whereClause = { presentId: null };
+      console.log(req.body);
 
       if (userId !== undefined) {
         whereClause.id = userId;
@@ -33,8 +34,8 @@ class UsersController {
         whereClause.code = code;
       }
 
-      if (!code || !userId) {
-        return res.status(404).json({ error: "Require fields. Please check your request" });
+      if (!code && !userId) {
+        return res.status(202).json({ error: "Campos requeridos, por favor valida!" });
       }
 
       const user = await User.findOne({
@@ -42,15 +43,18 @@ class UsersController {
       });
 
       if (!user) {
-        return res.status(404).json({ error: "User not found or has present yet" });
+        return res.status(202).json({ error: "Invitado no encontrado o regalo ya escogido" });
       }
 
       await user.update({ isConfirmed: confirm, presentId: presentId });
 
-      res.status(200).json(user);
+      res.status(200).json({
+        user,
+        message: "Confirmacion exitosa"
+      });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: error.message });
+      res.status(202).json({ error: error.message });
     }
   }
 }
