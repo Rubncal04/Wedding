@@ -9,6 +9,10 @@ const userRoutes = (app) => {
   app.put('/reservation', (req, res) => {
     user.reservation(req, res);
   })
+
+  app.get('/message', (_, res) => {
+    user.sendMessage(res);
+  })
 }
 
 module.exports = userRoutes;
