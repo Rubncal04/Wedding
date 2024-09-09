@@ -58,6 +58,47 @@ class UsersController {
     }
   }
 
+  async getAllUsersWithNoReservation(res) {
+    try {
+      const users = await User.findAll({
+        where: {
+          isConfirmed: false
+        },
+        order: [
+          ['id', 'ASC']
+        ]
+      });
+
+      res.json(users)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Something went wrong" });
+    }
+  }
+
+  async countInvited(res) {
+    try {
+      let notConfirmed = 0
+      let confirmed = 0
+      let users = await User.findAll();
+      users = JSON.parse(JSON.stringify(users));
+
+      users.forEach(user => {
+        if (user.isConfirmed) {
+          confirmed++;
+          return
+        }
+        notConfirmed++
+      });
+
+      let result = confirmed + notConfirmed
+      res.status(202).json({ result, confirmed, notConfirmed })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Something went wrong" });
+    }
+  }
+
   async sendMessage(res) {
     try {
       const users = await User.findAll();

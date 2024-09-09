@@ -6,6 +6,14 @@ const userRoutes = (app) => {
     user.getAllUsers(res);
   })
 
+  app.get('/users-no-confirmed', (_, res) => {
+    user.getAllUsersWithNoReservation(res);
+  })
+
+  app.get('/count', async (_, res) => {
+    await user.countInvited(res);
+  })
+
   app.put('/reservation', (req, res) => {
     user.reservation(req, res);
   })
